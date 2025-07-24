@@ -2,11 +2,13 @@
 
 ## Overview
 
-This is a full-stack voting application built for student elections. The system allows students to view candidates and cast votes, while providing an admin dashboard for monitoring election results in real-time. The application uses a modern tech stack with React on the frontend, Express.js on the backend, and PostgreSQL with Drizzle ORM for data persistence.
+This is a complete authentication-based voting system for student elections featuring login/signup, admin dashboard protection, email validation, and time-controlled leaderboard access. Students must register with university emails (@mallareddyuniversity.ac.in) to vote for 5 candidates: Ashvith, Vaishnavi, Sandeep, Sujasree, and Shashank. Admin access requires username "admin" and password "password".
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Code style: Clean code without comments as requested.
+GitHub friendly: Simple structure and clean implementation.
 
 ## System Architecture
 

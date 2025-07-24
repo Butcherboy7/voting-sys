@@ -1,5 +1,4 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -7,20 +6,26 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Vote, Info, CheckCircle } from "lucide-react";
 import type { Candidate } from "@shared/schema";
 
-export default function VotingPage() {
+interface User {
+  id: number;
+  email: string;
+  name: string;
+  isAdmin: boolean;
+  hasVoted: boolean;
+}
+
+interface VotingPageProps {
+  user: User;
+  setUser: (user: User) => void;
+}
+
+export default function VotingPage({ user, setUser }: VotingPageProps) {
   const { toast } = useToast();
 
-  // Fetch candidates
   const { data: candidates = [], isLoading: candidatesLoading } = useQuery<Candidate[]>({
     queryKey: ["/api/candidates"],
   });
 
-  // Check vote status
-  const { data: voteStatus, isLoading: statusLoading } = useQuery<{ hasVoted: boolean }>({
-    queryKey: ["/api/vote-status"],
-  });
-
-  // Vote mutation
   const voteMutation = useMutation({
     mutationFn: async (candidateId: number) => {
       const response = await apiRequest("POST", "/api/vote", { candidateId });
@@ -32,8 +37,7 @@ export default function VotingPage() {
         description: "Thank you for participating in the election.",
         variant: "default",
       });
-      // Invalidate vote status to refresh the UI
-      queryClient.invalidateQueries({ queryKey: ["/api/vote-status"] });
+      setUser({ ...user, hasVoted: true });
     },
     onError: (error: any) => {
       toast({
@@ -45,13 +49,13 @@ export default function VotingPage() {
   });
 
   const handleVote = (candidateId: number) => {
-    if (voteStatus?.hasVoted || voteMutation.isPending) {
+    if (user?.hasVoted || voteMutation.isPending) {
       return;
     }
     voteMutation.mutate(candidateId);
   };
 
-  if (candidatesLoading || statusLoading) {
+  if (candidatesLoading) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="animate-pulse">
@@ -74,7 +78,6 @@ export default function VotingPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-slate-900 mb-2">Cast Your Vote</h2>
         <p className="text-slate-600">Choose your preferred candidate for Student Council President</p>
@@ -84,8 +87,7 @@ export default function VotingPage() {
         </div>
       </div>
 
-      {/* Vote Status */}
-      {voteStatus?.hasVoted && (
+      {user?.hasVoted && (
         <div className="mb-6">
           <Card className="bg-emerald-50 border-emerald-200">
             <CardContent className="pt-6">
@@ -99,7 +101,6 @@ export default function VotingPage() {
         </div>
       )}
 
-      {/* Candidates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {candidates.map((candidate) => (
           <Card key={candidate.id} className="bg-white hover:shadow-md transition-shadow">
@@ -115,7 +116,7 @@ export default function VotingPage() {
                 <p className="text-slate-600 text-sm mb-4">{candidate.platform}</p>
                 <Button
                   onClick={() => handleVote(candidate.id)}
-                  disabled={voteStatus?.hasVoted || voteMutation.isPending}
+                  disabled={user?.hasVoted || voteMutation.isPending}
                   className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium"
                 >
                   <Vote className="w-4 h-4 mr-2" />
