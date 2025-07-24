@@ -9,6 +9,7 @@ This is a complete authentication-based voting system for student elections feat
 Preferred communication style: Simple, everyday language.
 Code style: Clean code without comments as requested.
 GitHub friendly: Simple structure and clean implementation.
+User workflow: Registration should prompt to login separately, one-time voting with candidate images, admin dashboard shows all votes.
 
 ## System Architecture
 

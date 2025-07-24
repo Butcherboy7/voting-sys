@@ -99,8 +99,8 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
       
       if (response.ok) {
         const result = await response.json();
-        onLogin(result.user);
-        toast({ title: "Registration successful", description: "Welcome to the voting system!" });
+        toast({ title: "Registration successful", description: "Please login with your credentials to continue" });
+        registerForm.reset();
       } else {
         const error = await response.json();
         toast({

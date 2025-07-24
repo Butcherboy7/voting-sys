@@ -29,7 +29,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const pgStore = connectPg(session);
   const sessionStore = new pgStore({
     conString: process.env.DATABASE_URL,
-    createTableIfMissing: true,
+    createTableIfMissing: false,
     ttl: sessionTtl,
   });
 
@@ -53,8 +53,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "User already exists" });
       }
       const user = await storage.createUser(userData);
-      (req as AuthenticatedRequest).session.userId = user.id;
-      (req as AuthenticatedRequest).session.isAdmin = user.isAdmin;
       res.json({ message: "Registration successful", user: { id: user.id, email: user.email, name: user.name } });
     } catch (error) {
       if (error instanceof z.ZodError) {
