@@ -8,8 +8,9 @@ This is a complete authentication-based voting system for student elections feat
 
 Preferred communication style: Simple, everyday language.
 Code style: Clean code without comments as requested.
-GitHub friendly: Simple structure and clean implementation.
+GitHub friendly: Simple structure and clean implementation with proper documentation.
 User workflow: Registration should prompt to login separately, one-time voting with candidate images, admin dashboard shows all votes.
+Repository structure: Easy to clone and run locally with clear setup instructions.
 
 ## System Architecture
 
@@ -86,7 +87,8 @@ The application is configured for deployment on Replit with the following setup:
 1. **Monorepo Structure**: Keeps related code together while maintaining clear boundaries between client, server, and shared code
 2. **TypeScript Throughout**: Ensures type safety across the entire stack with shared types
 3. **Drizzle ORM**: Provides type-safe database operations with excellent TypeScript integration
-4. **In-Memory Development Storage**: Allows development without database setup, with easy migration to PostgreSQL
-5. **Session-Based Voting Prevention**: Simple but effective duplicate vote prevention using IP and user agent
+4. **PostgreSQL Database**: Production-ready database with proper session management
+5. **Session-Based Authentication**: Secure user authentication with PostgreSQL session storage
 6. **Real-Time Updates**: Polling-based updates for admin dashboard to show live election results
 7. **Component Abstraction**: shadcn/ui provides consistent, accessible UI components with Tailwind styling
+8. **GitHub-Friendly Setup**: Complete documentation, environment examples, and easy local development setup
