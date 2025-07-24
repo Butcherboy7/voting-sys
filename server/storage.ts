@@ -34,31 +34,31 @@ export class MemStorage implements IStorage {
   private initializeCandidates() {
     const initialCandidates: InsertCandidate[] = [
       {
-        name: "Emily Rodriguez",
+        name: "Ashvith",
         grade: "Senior, Computer Science",
         platform: "Focused on improving campus technology and student resources",
-        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
-      },
-      {
-        name: "Marcus Thompson",
-        grade: "Junior, Business Administration",
-        platform: "Dedicated to enhancing student life and campus activities",
         imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
       },
       {
-        name: "Sarah Chen",
-        grade: "Senior, Environmental Science",
-        platform: "Committed to sustainability and environmental initiatives",
-        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+        name: "Vaishnavi",
+        grade: "Junior, Business Administration",
+        platform: "Dedicated to enhancing student life and campus activities",
+        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
       },
       {
-        name: "David Wilson",
-        grade: "Junior, Psychology",
-        platform: "Advocating for mental health resources and student support",
+        name: "Sandeep",
+        grade: "Senior, Environmental Science",
+        platform: "Committed to sustainability and environmental initiatives",
         imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
       },
       {
-        name: "Aisha Patel",
+        name: "Sujasree",
+        grade: "Junior, Psychology",
+        platform: "Advocating for mental health resources and student support",
+        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+      },
+      {
+        name: "Shashank",
         grade: "Senior, Engineering",
         platform: "Promoting diversity, inclusion, and academic excellence",
         imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
