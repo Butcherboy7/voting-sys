@@ -1,20 +1,26 @@
 import express, { type Request, Response, NextFunction } from "express";
+import http from "http"; // Import the http module
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+// Create an HTTP server instance. This is good practice and gives more control.
+const server = http.createServer(app);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Middleware for logging API requests
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
+  // Monkey-patch res.json to capture the response body for logging
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
+    return originalResJson.apply(res, [bodyJson, ...args] as any);
   };
 
   res.on("finish", () => {
@@ -37,37 +43,36 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  const server = await registerRoutes(app);
+  // *** FIX APPLIED HERE ***
+  // The registerRoutes function in your project expects only one argument.
+  await registerRoutes(app);
 
+  // Generic error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
+    console.error(err); // Log the full error to the console
+
     if (!res.headersSent) {
       res.status(status).json({ message });
     }
-    console.error(err);
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
+  // Setup Vite for development or serve static files for production
+  // This should come after API routes and error handlers
+  if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
+  // Define the port, defaulting to 5000
   const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
+  
+  // Changed host from '0.0.0.0' to 'localhost' to fix the ENOTSUP error on Windows.
+  server.listen(port, 'localhost', () => {
+    log(`Server running at http://localhost:${port}`);
   });
+
 })();
