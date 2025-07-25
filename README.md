@@ -2,7 +2,8 @@
 
 A complete authentication-based voting system for student elections built with React, Express.js, and in-memory storage.
 
-> **🚀 Quick Start:** Just run `git clone`, `npm install`, and `npm run dev` - no database or API keys needed!
+> **🚀 Ultra Quick:** `git clone` → `npm install` → `npm run dev` → `http://localhost:5000`  
+> **Zero Config:** No database, no API keys, no environment setup needed!
 
 ## Features
 
@@ -31,8 +32,8 @@ A complete authentication-based voting system for student elections built with R
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd student-elections-2024
+   git clone <your-repository-url>
+   cd <your-repository-folder>
    ```
 
 2. **Install dependencies**
@@ -47,7 +48,7 @@ A complete authentication-based voting system for student elections built with R
 
    The application will be available at `http://localhost:5000`
 
-That's it! No database setup, no API keys, no environment variables required. The app uses in-memory storage and comes with sample candidates pre-loaded.
+**That's it!** No database setup, no API keys, no environment variables required. The app uses in-memory storage and comes with 5 pre-loaded candidates ready for voting.
 
 ## Project Structure
 

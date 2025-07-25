@@ -10,7 +10,7 @@ Preferred communication style: Simple, everyday language.
 Code style: Clean code without comments as requested.
 GitHub friendly: Simple structure and clean implementation with proper documentation.
 User workflow: Registration should prompt to login separately, one-time voting with candidate images, admin dashboard shows all votes.
-Repository structure: Easy to clone and run locally with clear setup instructions.
+Repository structure: Easy to clone and run locally with clear setup instructions. Project files are in root directory, not in a subfolder.
 
 ## System Architecture
 

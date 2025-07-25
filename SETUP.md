@@ -5,7 +5,7 @@
 1. **Clone and install**
    ```bash
    git clone <your-repo-url>
-   cd student-elections-2024
+   cd <your-repo-folder>
    npm install
    ```
 
