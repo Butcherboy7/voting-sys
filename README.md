@@ -1,6 +1,8 @@
 # Student Elections 2024 - Voting System
 
-A complete authentication-based voting system for student elections built with React, Express.js, and PostgreSQL.
+A complete authentication-based voting system for student elections built with React, Express.js, and in-memory storage.
+
+> **🚀 Quick Start:** Just run `git clone`, `npm install`, and `npm run dev` - no database or API keys needed!
 
 ## Features
 
@@ -13,8 +15,8 @@ A complete authentication-based voting system for student elections built with R
 ## Tech Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
-- **Backend**: Express.js + TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
+- **Backend**: Express.js + TypeScript  
+- **Storage**: In-memory with session management
 - **UI**: Tailwind CSS + shadcn/ui components
 - **State Management**: TanStack Query
 
@@ -23,7 +25,6 @@ A complete authentication-based voting system for student elections built with R
 ### Prerequisites
 
 - Node.js 18+ 
-- PostgreSQL database
 - npm or yarn
 
 ### Installation
@@ -39,25 +40,14 @@ A complete authentication-based voting system for student elections built with R
    npm install
    ```
 
-3. **Set up environment variables**
-   Create a `.env` file in the root directory:
-   ```env
-   DATABASE_URL=postgresql://username:password@localhost:5432/elections_db
-   SESSION_SECRET=your-secret-key-here
-   PORT=5000
-   ```
-
-4. **Set up the database**
-   ```bash
-   npm run db:push
-   ```
-
-5. **Start the development server**
+3. **Start the development server**
    ```bash
    npm run dev
    ```
 
    The application will be available at `http://localhost:5000`
+
+That's it! No database setup, no API keys, no environment variables required. The app uses in-memory storage and comes with sample candidates pre-loaded.
 
 ## Project Structure
 
@@ -95,29 +85,31 @@ A complete authentication-based voting system for student elections built with R
 
 ## Available Scripts
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start development server (most common)
 - `npm run build` - Build for production
 - `npm start` - Start production server
-- `npm run db:push` - Apply database schema changes
 - `npm run check` - Type check the project
 
-## Database Schema
+## Data Storage
 
-The application uses the following main tables:
+The application uses in-memory storage with these data structures:
 
 - **users**: Student accounts with email validation
-- **candidates**: Election candidates with profiles
-- **votes**: Vote records with user and candidate references
+- **candidates**: Pre-loaded election candidates with profiles
+- **votes**: Vote records linking users and candidates
 - **settings**: System configuration (leaderboard visibility, etc.)
-- **sessions**: User session management
+- **sessions**: User session management in memory
 
-## Environment Variables
+Data persists during the session but resets when the server restarts - perfect for testing and development!
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `SESSION_SECRET` | Secret key for session encryption | Yes |
-| `PORT` | Server port (default: 5000) | No |
+## Environment Variables (Optional)
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `SESSION_SECRET` | Secret key for session encryption | `student-elections-secret-key` |
+| `PORT` | Server port | `5000` |
+
+No database configuration needed! The app uses in-memory storage for simplicity.
 
 ## Security Features
 

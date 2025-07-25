@@ -1,10 +1,10 @@
 import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./storage-memory";
 import { insertVoteSchema, insertUserSchema, loginSchema, adminLoginSchema } from "@shared/schema";
 import { z } from "zod";
 import session from "express-session";
-import connectPg from "connect-pg-simple";
+import MemoryStore from "memorystore";
 
 interface AuthenticatedRequest extends Request {
   session: any;
@@ -26,16 +26,14 @@ const isAdmin = (req: AuthenticatedRequest, res: any, next: any) => {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const sessionTtl = 24 * 60 * 60 * 1000;
-  const pgStore = connectPg(session);
-  const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
-    createTableIfMissing: false,
-    ttl: sessionTtl,
+  const MemStore = MemoryStore(session);
+  const sessionStore = new MemStore({
+    checkPeriod: sessionTtl,
   });
 
   app.use(session({
     store: sessionStore,
-    secret: process.env.SESSION_SECRET || 'fallback-secret',
+    secret: process.env.SESSION_SECRET || 'student-elections-secret-key',
     resave: false,
     saveUninitialized: false,
     cookie: {

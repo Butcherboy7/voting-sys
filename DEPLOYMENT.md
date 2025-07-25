@@ -5,19 +5,20 @@ This guide covers deploying the Student Elections 2024 voting system to various 
 ## Prerequisites
 
 - Node.js 18+ environment
-- PostgreSQL database
-- Environment variables configured
+- No database required (uses in-memory storage)
+- Minimal environment configuration
 
-## Environment Variables
+## Environment Variables (Optional)
 
-Ensure these environment variables are set in your deployment environment:
+You can set these environment variables in your deployment environment:
 
 ```env
-DATABASE_URL=postgresql://username:password@host:port/database
 SESSION_SECRET=your-secure-session-secret
 PORT=5000
 NODE_ENV=production
 ```
+
+The app works perfectly without any environment variables!
 
 ## Local Production Build
 
@@ -50,26 +51,18 @@ The project is pre-configured for Replit deployment:
    heroku create your-app-name
    ```
 
-2. **Add PostgreSQL addon**:
-   ```bash
-   heroku addons:create heroku-postgresql:mini
-   ```
-
-3. **Set environment variables**:
+2. **Set environment variables** (optional):
    ```bash
    heroku config:set SESSION_SECRET=your-secure-secret
    heroku config:set NODE_ENV=production
    ```
 
-4. **Deploy**:
+3. **Deploy**:
    ```bash
    git push heroku main
    ```
 
-5. **Run database migrations**:
-   ```bash
-   heroku run npm run db:push
-   ```
+That's it! No database setup needed.
 
 ### Vercel
 
