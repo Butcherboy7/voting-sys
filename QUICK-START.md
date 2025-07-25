@@ -1,7 +1,13 @@
 # 🚀 Ultra Quick Start
 
+## Choose Your Terminal First
+
+**Windows:** Use **Git Bash** (recommended) or Command Prompt
+**Mac/Linux:** Use **Terminal**
+
 ## For Developers Who Want It FAST
 
+**Git Bash/Terminal:**
 ```bash
 # 1. Clone this repo
 git clone <your-repo-url>
@@ -9,6 +15,20 @@ cd <repo-folder-name>
 
 # 2. Install and run
 npm install && npm run dev
+
+# 3. Open browser
+# Visit: http://localhost:5000
+```
+
+**Windows Command Prompt:**
+```cmd
+# 1. Clone this repo
+git clone <your-repo-url>
+cd <repo-folder-name>
+
+# 2. Install and run
+npm install
+npm run dev
 
 # 3. Open browser
 # Visit: http://localhost:5000

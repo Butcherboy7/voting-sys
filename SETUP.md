@@ -1,9 +1,46 @@
 # Quick Setup Guide
 
+## Terminal Selection Guide
+
+### Windows Users (Choose One):
+
+**Option 1: Git Bash (Recommended)**
+- Install Git for Windows (includes Git Bash)
+- Right-click in any folder → "Git Bash Here"
+- Supports all Unix/Linux commands
+- Best for development work
+
+**Option 2: Command Prompt**
+- Press `Win + R`, type `cmd`, press Enter
+- Built into Windows
+- Use Windows-style commands
+
+**Option 3: PowerShell**
+- Press `Win + X`, select "PowerShell"
+- More powerful than Command Prompt
+- Supports both Windows and Unix-like commands
+
+### Mac Users:
+- Open **Terminal** (Applications → Utilities → Terminal)
+- Or press `Cmd + Space`, type "Terminal"
+
+### Linux Users:
+- Open your distribution's **Terminal**
+- Usually `Ctrl + Alt + T` shortcut
+
 ## Simple 3-Step Setup
 
-1. **Clone and install**
+1. **Open terminal and clone**
+   
+   **Git Bash/Terminal/PowerShell:**
    ```bash
+   git clone <your-repo-url>
+   cd <your-repo-folder>
+   npm install
+   ```
+   
+   **Windows Command Prompt:**
+   ```cmd
    git clone <your-repo-url>
    cd <your-repo-folder>
    npm install

@@ -26,22 +26,44 @@ A complete authentication-based voting system for student elections built with R
 ### Prerequisites
 
 - Node.js 18+ 
+- Git
 - npm or yarn
+
+### Choose Your Terminal
+
+**Windows Users:**
+- **Git Bash** (Recommended) - Comes with Git installation, supports all Unix commands
+- **Command Prompt** - Built-in Windows terminal
+- **PowerShell** - Advanced Windows terminal
+- **Windows Terminal** - Modern Windows terminal app
+
+**Mac Users:**
+- **Terminal** (Built-in) - Standard Mac terminal
+- **iTerm2** - Popular third-party terminal
+
+**Linux Users:**
+- **Terminal** - Your distribution's default terminal
 
 ### Installation
 
-1. **Clone the repository**
+1. **Open your terminal/Git Bash**
+   
+   **Windows:** Right-click in folder → "Git Bash Here" or open Git Bash and navigate
+   
+   **Mac/Linux:** Open Terminal app
+
+2. **Clone the repository**
    ```bash
    git clone <your-repository-url>
    cd <your-repository-folder>
    ```
 
-2. **Install dependencies**
+3. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+4. **Start the development server**
    ```bash
    npm run dev
    ```
@@ -122,11 +144,22 @@ No database configuration needed! The app uses in-memory storage for simplicity.
 
 ## Contributing
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+Quick steps:
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
 3. Commit your changes: `git commit -am 'Add feature'`
 4. Push to the branch: `git push origin feature-name`
 5. Create a Pull Request
+
+## Documentation
+
+- [QUICK-START.md](QUICK-START.md) - Ultra-fast setup
+- [SETUP.md](SETUP.md) - Detailed setup guide
+- [TERMINAL-GUIDE.md](TERMINAL-GUIDE.md) - Terminal selection and usage
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment instructions
 
 ## License
 
