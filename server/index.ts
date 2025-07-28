@@ -43,7 +43,6 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // *** FIX APPLIED HERE ***
   // The registerRoutes function in your project expects only one argument.
   await registerRoutes(app);
 
@@ -70,9 +69,13 @@ app.use((req, res, next) => {
   // Define the port, defaulting to 5000
   const port = parseInt(process.env.PORT || '5000', 10);
   
-  // Changed host from '0.0.0.0' to 'localhost' to fix the ENOTSUP error on Windows.
-  server.listen(port, 'localhost', () => {
-    log(`Server running at http://localhost:${port}`);
+  // *** FIX APPLIED HERE ***
+  // Use '0.0.0.0' for production (like on Render) and 'localhost' for development.
+  const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+ 
+  server.listen(port, host, () => {
+    // Use the host variable in the log for accuracy.
+    log(`Server running at http://${host}:${port}`);
   });
 
 })();
